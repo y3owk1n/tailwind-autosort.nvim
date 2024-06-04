@@ -2,6 +2,7 @@ local M = {}
 
 local log = require("tailwind-autosort.log")
 local treesitter = require("tailwind-autosort.treesitter")
+local state = require("tailwind-autosort.state")
 
 ---@return vim.lsp.Client|nil
 M.get_tw_lsp_client = function()
@@ -129,9 +130,11 @@ M.run_sort = function(write_on_sort)
 					end
 
 					pcall(set_text)
-					log.info(
-						"Tailwind class sorted at line " .. (start_row + 1)
-					)
+					if state.state.autosort_on_save.notify_after_save then
+						log.info(
+							"Tailwind class sorted at line " .. (start_row + 1)
+						)
+					end
 				end
 			end
 
