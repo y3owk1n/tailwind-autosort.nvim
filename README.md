@@ -5,6 +5,18 @@
 
 Format tailwind classes without `prettier-plugin-tailwindcss` in `class`, `className`, `cn`, `cva`, `clsx` and `twMerge`
 
+## Previews
+
+### Sort in className
+https://github.com/y3owk1n/tailwind-autosort.nvim/assets/62775956/a80e465a-89bc-4f08-90a3-03a5b986832b
+
+
+### Sort in cva
+https://github.com/y3owk1n/tailwind-autosort.nvim/assets/62775956/afa4887d-68b6-4e82-aec1-1805a981f536
+
+### Sort in cn
+https://github.com/y3owk1n/tailwind-autosort.nvim/assets/62775956/e63754d9-1abe-45ab-b9ab-d38f84306c23
+
 ## Motivation
 
 This project is originated, inspired and copied (yes, i copied) some of the functionality from [tailwind-tools.nvim](https://github.com/luckasRanarison/tailwind-tools.nvim). Please please please support the actual creator instead.
