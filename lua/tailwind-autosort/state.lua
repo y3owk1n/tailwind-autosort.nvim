@@ -2,11 +2,8 @@ local M = {}
 
 local log = require("tailwind-autosort.log")
 
-M.state = {
-	autosort_on_save = {
-		enabled = false,
-	},
-}
+---@type TailwindAutoSort.Option
+M.state = {}
 
 M.get = function()
 	log.info("State: " .. vim.inspect(M.state))

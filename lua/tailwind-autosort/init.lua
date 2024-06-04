@@ -8,8 +8,10 @@ local cmd = require("tailwind-autosort.cmd")
 M.setup = function(options)
 	config.options = vim.tbl_deep_extend("keep", options, config.options)
 
-	state.state.autosort_on_save.enabled =
-		config.options.autosort_on_save.enabled
+	state.state.autosort_on_save = {
+		enabled = config.options.autosort_on_save.enabled,
+		notify_after_save = config.options.autosort_on_save.notify_after_save,
+	}
 
 	cmd.create_user_command()
 	cmd.create_autocmd()

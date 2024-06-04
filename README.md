@@ -8,13 +8,15 @@ Format tailwind classes without `prettier-plugin-tailwindcss` in `class`, `class
 ## Previews
 
 ### Sort in className
+
 https://github.com/y3owk1n/tailwind-autosort.nvim/assets/62775956/a80e465a-89bc-4f08-90a3-03a5b986832b
 
-
 ### Sort in cva
+
 https://github.com/y3owk1n/tailwind-autosort.nvim/assets/62775956/afa4887d-68b6-4e82-aec1-1805a981f536
 
 ### Sort in cn
+
 https://github.com/y3owk1n/tailwind-autosort.nvim/assets/62775956/e63754d9-1abe-45ab-b9ab-d38f84306c23
 
 ## Motivation
@@ -73,9 +75,9 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 ```lua
 -- tailwind-autosort.lua
 return {
-  "y3owk1n/tailwind-autosort.nvim",
-  dependencies = { "nvim-treesitter/nvim-treesitter" },
-  opts = {} -- your configuration
+    "y3owk1n/tailwind-autosort.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    opts = {} -- your configuration
 }
 ```
 
@@ -96,6 +98,7 @@ Here is the default configuration:
 {
     autosort_on_save = {
         enabled = true, -- You can toggle this later with :TailwindSortEnable or :TailwindSortDisable
+        notify_after_save = true -- To notify after save
     },
 }
 ```
