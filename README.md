@@ -9,9 +9,14 @@ Format tailwind classes without `prettier-plugin-tailwindcss` in `class`, `class
 
 This project is originated, inspired and copied (yes, i copied) some of the functionality from [tailwind-tools.nvim](https://github.com/luckasRanarison/tailwind-tools.nvim). Please please please support the actual creator instead.
 
-To me, I uses prettier and biome differently in different projects or maybe none of it are used in a project, but i still want to have the sorting capabilities regardless of the project formatting setup. For prettier, there is `prettier-plugin-tailwindcss`, but if you're not using that. For biome, there is `useSortedClass`, where it is still WIP, Hence, this is one of the way to achieve the same functionality.
+In my workflow, I use Prettier and Biome differently across various projects. Sometimes, I don’t use either. However, I still want the capability to sort classes, regardless of the project's formatting setup.
 
-At the moment I do not need the full suite of tailwind-tools but just class sorting. Also I have extended the sorting to work with `cn`, `cva`, `clsx` and `twMerge` and also include sort and save.
+- For Prettier, there is `prettier-plugin-tailwindcss`.
+- For Biome, there is `useSortedClass` (still a work in progress).
+
+This project provides a way to achieve similar class sorting functionality.
+
+At the moment I do not need the full suite of tailwind-tools but just class sorting. This project extends sorting capabilities to work with `cn`, `cva`, `clsx` and `twMerge`, with sort and save functionality.
 
 ## Contents
 
@@ -105,4 +110,3 @@ Here are some related projects:
 Read the documentation carefully before submitting any issue.
 
 Feature and pull requests are welcome.
-
