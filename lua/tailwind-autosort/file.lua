@@ -1,5 +1,8 @@
 local M = {}
 
+local cache = require("tailwind-autosort.cache")
+local log = require("tailwind-autosort.log")
+
 M.find_root = function(ctx, file_patterns)
 	return vim.fs.find(file_patterns, { path = ctx.filename, upward = true })[1]
 end
@@ -45,25 +48,38 @@ M.check_prettier_tw_plugin = function()
 		".prettierrc.toml",
 	}
 
-	local ctx = {}
-	ctx.filename = vim.fn.expand("%:p")
+	if cache.cache.tw_root_dir == nil then
+		local ctx = {}
+		ctx.filename = vim.fn.expand("%:p")
 
-	local prettier_root = M.find_root(ctx, prettier_file_pattern)
+		local prettier_root = M.find_root(ctx, prettier_file_pattern)
 
-	if not prettier_root then
-		return false
+		if not prettier_root then
+			cache.cache.tw_root_dir = false
+			return false
+		end
+
+		cache.cache.tw_root_dir = M.current_file_path_absolute(prettier_root)
 	end
 
-	local prettier_root_path = M.current_file_path_absolute(prettier_root)
+	if
+		cache.cache.has_tw_prettier_plugin == nil
+		and (cache.cache.tw_root_dir ~= false or cache.cache.tw_root_dir == nil)
+	then
+		local result = M.find_text_in_file(
+			"prettier-plugin-tailwindcss",
+			cache.cache.tw_root_dir
+		)
 
-	local result =
-		M.find_text_in_file("prettier-plugin-tailwindcss", prettier_root_path)
+		if not result then
+			cache.cache.has_tw_prettier_plugin = false
+			return false
+		end
 
-	if not result then
-		return false
+		cache.cache.has_tw_prettier_plugin = result > 0
 	end
 
-	return true
+	return cache.cache.has_tw_prettier_plugin
 end
 
 return M
