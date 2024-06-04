@@ -87,10 +87,10 @@ Here is the default configuration:
 
 Available commands:
 
-- `TailwindSortRun`: sorts all classes in the current buffer without saving.
-- `TailwindSortGetState`: get the current autosave state.
-- `TailwindSortEnable`: enable autosave after sorting.
-- `TailwindSortDisable`: disable autosave after sorting.
+- `TailwindAutoSortRun`: sorts all classes in the current buffer without saving.
+- `TailwindAutoSortGetState`: get the current autosave state.
+- `TailwindAutoSortEnable`: enable autosave after sorting.
+- `TailwindAutoSortDisable`: disable autosave after sorting.
 
 ## Related projects
 
