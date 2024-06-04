@@ -7,17 +7,21 @@ Format tailwind classes without `prettier-plugin-tailwindcss` in `class`, `class
 
 ## Previews
 
-### Sort in className
+### Sort & Trim in className
 
 https://github.com/y3owk1n/tailwind-autosort.nvim/assets/62775956/a80e465a-89bc-4f08-90a3-03a5b986832b
 
-### Sort in cva
+### Sort & Trim in cva
 
 https://github.com/y3owk1n/tailwind-autosort.nvim/assets/62775956/afa4887d-68b6-4e82-aec1-1805a981f536
 
-### Sort in cn
+### Sort & Trim in cn
 
 https://github.com/y3owk1n/tailwind-autosort.nvim/assets/62775956/e63754d9-1abe-45ab-b9ab-d38f84306c23
+
+### Dedupe classes
+
+https://github.com/y3owk1n/tailwind-autosort.nvim/assets/62775956/4fb125b8-fd60-402f-80a8-6d0b3d0387ee
 
 ## Motivation
 
