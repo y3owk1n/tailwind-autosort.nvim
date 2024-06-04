@@ -30,7 +30,7 @@ In my workflow, I use Prettier and Biome differently across various projects. So
 
 This project provides a way to achieve similar class sorting functionality.
 
-At the moment I do not need the full suite of tailwind-tools but just class sorting. This project extends sorting capabilities to work with `cn`, `cva`, `clsx` and `twMerge`, with sort and save functionality.
+At the moment I do not need the full suite of tailwind-tools but just class sorting. This project extends sorting capabilities to work with `cn`, `cva`, `clsx` and `twMerge`, with sort & save functionality, and dedupe repeated classes.
 
 ## Contents
 
@@ -54,6 +54,7 @@ The plugin works with tsx treesitter grammars and provides the following feature
 - Trim leading spaces
 - Trim intermediate spaces within class string
 - Works with `class`, `className`, `cn`, `cva`, `clsx` and `twMerge`
+- Dedupe repeated classes
 
 > [!NOTE]
 > Language services like autocompletion, diagnostics and hover are already provided by [tailwindcss-language-server](https://github.com/tailwindlabs/tailwindcss-intellisense/tree/master/packages/tailwindcss-language-server).
@@ -111,6 +112,7 @@ Available commands:
 - `TailwindAutoSortGetState`: get the current autosave state.
 - `TailwindAutoSortEnable`: enable autosave after sorting.
 - `TailwindAutoSortDisable`: disable autosave after sorting.
+- `TailwindAutoSortResetCache`: reset the cache that saves `tailwind config path` and `has prettier-plugin-tailwindcss`, useful when you want to change project without re-opening neovim.
 
 ## Related projects
 
@@ -118,7 +120,7 @@ Here are some related projects:
 
 - [tailwindcss-intellisense](https://github.com/tailwindlabs/tailwindcss-intellisense) (official vscode extension)
 - [tailwind-sorter.nvim](https://github.com/laytan/tailwind-sorter.nvim) (uses external scripts)
-- [tailwind-tools.nvim](https://github.com/luckasRanarison/tailwind-tools.nvim)
+- [tailwind-tools.nvim](https://github.com/luckasRanarison/tailwind-tools.nvim) (the one that i copied some code from)
 
 ## Contributing
 
