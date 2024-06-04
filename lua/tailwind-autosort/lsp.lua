@@ -12,10 +12,7 @@ M.get_tw_lsp_client = function()
 	local tw_client = clients[1]
 
 	if not tw_client then
-		log.notify(
-			"Required tailwind-language-server is not running",
-			vim.log.levels.WARN
-		)
+		log.warn("Required tailwind-language-server is not running")
 		return
 	end
 
@@ -65,10 +62,10 @@ M.run_sort = function(write_on_sort)
 		params,
 		function(err, result, _, _)
 			if err then
-				return log.notify(err.message, vim.log.levels.ERROR)
+				return log.error(err.message)
 			end
 			if result.error then
-				return log.notify(result.error, vim.log.levels.ERROR)
+				return log.error(result.error)
 			end
 			if not result or not vim.api.nvim_buf_is_valid(bufnr) then
 				return
@@ -132,9 +129,8 @@ M.run_sort = function(write_on_sort)
 					end
 
 					pcall(set_text)
-					log.notify(
-						"Tailwind class sorted at line " .. (start_row + 1),
-						vim.log.levels.INFO
+					log.info(
+						"Tailwind class sorted at line " .. (start_row + 1)
 					)
 				end
 			end
