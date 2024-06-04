@@ -44,6 +44,7 @@ The plugin works with tsx treesitter grammars and provides the following feature
 - Neovim v0.9 or higher (v0.10 is recommended)
 - [tailwindcss-language-server](https://github.com/tailwindlabs/tailwindcss-intellisense/tree/master/packages/tailwindcss-language-server) >= `v0.0.14` (can be installed using [Mason](https://github.com/williamboman/mason.nvim))
 - `tsx` and your other languages treesitter grammars (using [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter))
+- [ripgrep](https://github.com/BurntSushi/ripgrep) to find `prettier-plugin-tailwindcss` in tailwind config
 
 > [!TIP]
 > If you are not familiar with neovim LSP ecosystem check out [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) to learn how to setup the LSP.
