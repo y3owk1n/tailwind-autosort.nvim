@@ -18,15 +18,19 @@ M.setup = function(options)
 		{ clear = true }
 	)
 
-	vim.api.nvim_create_user_command("TailwindSortRun", function()
+	vim.api.nvim_create_user_command("TailwindAutoSortRun", function()
 		vim.schedule(lsp.run_sort)
 	end, {})
 
-	vim.api.nvim_create_user_command("TailwindSortGetState", state.get, {})
+	vim.api.nvim_create_user_command("TailwindAutoSortGetState", state.get, {})
 
-	vim.api.nvim_create_user_command("TailwindSortEnable", state.enable, {})
+	vim.api.nvim_create_user_command("TailwindAutoSortEnable", state.enable, {})
 
-	vim.api.nvim_create_user_command("TailwindSortDisable", state.disable, {})
+	vim.api.nvim_create_user_command(
+		"TailwindAutoSortDisable",
+		state.disable,
+		{}
+	)
 
 	vim.api.nvim_create_autocmd("BufWritePre", {
 		group = format_on_save_au,
