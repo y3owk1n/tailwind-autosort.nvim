@@ -36,9 +36,8 @@ M.create_autocmd = function()
 
 			-- Check if auto format is enabled
 			if not enabled_autosave then
-				log.notify(
-					"Auto format for TailwindSort is disabled, run :TailwindSortEnable to enable auto format",
-					vim.log.levels.INFO
+				log.info(
+					"Auto format for TailwindSort is disabled, run :TailwindSortEnable to enable auto format"
 				)
 
 				return
@@ -47,10 +46,7 @@ M.create_autocmd = function()
 
 			-- Check if prettier tailwind plugin is installed
 			if has_prettier_tw_plugin then
-				log.notify(
-					"Has prettier tailwind plugin, abort!",
-					vim.log.levels.WARN
-				)
+				log.warn("Has prettier tailwind plugin, abort!")
 
 				return
 			end

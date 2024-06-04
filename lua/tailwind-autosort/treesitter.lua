@@ -23,7 +23,7 @@ M.get_class_nodes = function(bufnr, all)
 
 	if not parser then
 		local message = string.format("No parser available for %s", ft)
-		return log.notify(message, vim.log.levels.WARN)
+		return log.warn(message)
 	end
 
 	if all and vim.version().minor == 10 then
