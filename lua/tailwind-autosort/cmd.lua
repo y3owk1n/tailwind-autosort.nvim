@@ -4,6 +4,7 @@ local state = require("tailwind-autosort.state")
 local lsp = require("tailwind-autosort.lsp")
 local log = require("tailwind-autosort.log")
 local file = require("tailwind-autosort.file")
+local cache = require("tailwind-autosort.cache")
 
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
@@ -25,6 +26,8 @@ M.create_user_command = function()
 	usercmd("TailwindAutoSortEnable", state.enable, {})
 
 	usercmd("TailwindAutoSortDisable", state.disable, {})
+
+	usercmd("TailwindAutoSortResetCache", cache.reset_cache, {})
 end
 
 M.create_autocmd = function()
@@ -46,7 +49,9 @@ M.create_autocmd = function()
 
 			-- Check if prettier tailwind plugin is installed
 			if has_prettier_tw_plugin then
-				log.warn("Has prettier tailwind plugin, abort!")
+				log.warn(
+					"Has prettier tailwind plugin, abort! consider to run :TailwindAutoSortDisable to disable auto format"
+				)
 
 				return
 			end
