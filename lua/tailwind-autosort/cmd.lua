@@ -35,27 +35,6 @@ M.create_autocmd = function()
 		group = M.create_augroup("format_on_save"),
 		pattern = { "*.tsx", "*.jsx" },
 		callback = function()
-			local enabled_autosave = state.state.autosort_on_save.enabled
-
-			-- Check if auto format is enabled
-			if not enabled_autosave then
-				log.info(
-					"Auto format for TailwindSort is disabled, run :TailwindSortEnable to enable auto format"
-				)
-
-				return
-			end
-			local has_prettier_tw_plugin = file.check_prettier_tw_plugin()
-
-			-- Check if prettier tailwind plugin is installed
-			if has_prettier_tw_plugin then
-				log.warn(
-					"Has prettier tailwind plugin, abort! consider to run :TailwindAutoSortDisable to disable auto format"
-				)
-
-				return
-			end
-
 			vim.schedule(function()
 				lsp.run_sort(true)
 			end)
