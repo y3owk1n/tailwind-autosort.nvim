@@ -3,6 +3,8 @@ local M = {}
 local log = require("tailwind-autosort.log")
 local treesitter = require("tailwind-autosort.treesitter")
 local state = require("tailwind-autosort.state")
+local file = require("tailwind-autosort.file")
+local cache = require("tailwind-autosort.cache")
 
 ---@return vim.lsp.Client|nil
 M.get_tw_lsp_client = function()
@@ -23,12 +25,48 @@ end
 ---@param write_on_sort boolean?
 M.run_sort = function(write_on_sort)
 	write_on_sort = write_on_sort or false
+
+	local enabled_autosave = state.state.autosort_on_save.enabled
+
+	-- Check if auto format is enabled
+	if not enabled_autosave then
+		log.info(
+			"Auto format for TailwindSort is disabled, run :TailwindSortEnable to enable auto format"
+		)
+
+		return
+	end
+
+	-- Set tailwind root into cache
+	file.set_tw_root()
+
+	-- Set prettier root into cache
+	file.set_prettier_root()
+
+	-- Set has prettier tailwind plugin into cache
+	file.set_prettier_tw_plugin()
+
+	-- Check if has tailwind config in the project
+	if not cache.cache.tw_root_dir then
+		log.warn("Tailwind config not found, abort!")
+
+		return
+	end
+
+	-- Check if prettier tailwind plugin is installed
+	if cache.cache.has_tw_prettier_plugin then
+		log.warn("Has prettier tailwind plugin, abort!")
+
+		return
+	end
+
 	local client = M.get_tw_lsp_client()
 
 	if not client then
 		return
 	end
 
+	-- start running sorting and replace
 	local bufnr = vim.api.nvim_get_current_buf()
 	local params = vim.lsp.util.make_text_document_params(bufnr)
 	local class_nodes = treesitter.get_class_nodes(bufnr, true)

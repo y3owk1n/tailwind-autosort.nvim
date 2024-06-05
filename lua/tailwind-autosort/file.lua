@@ -1,7 +1,6 @@
 local M = {}
 
 local cache = require("tailwind-autosort.cache")
-local log = require("tailwind-autosort.log")
 
 M.find_root = function(ctx, file_patterns)
 	return vim.fs.find(file_patterns, { path = ctx.filename, upward = true })[1]
@@ -30,8 +29,28 @@ M.find_text_in_file = function(search_text, path)
 	return count or 0 -- If the conversion fails, return 0
 end
 
----@return boolean
-M.check_prettier_tw_plugin = function()
+M.set_tw_root = function()
+	local tw_file_pattern = {
+		"tailwind.config.ts",
+		"tailwind.config.js",
+	}
+
+	if cache.cache.tw_root_dir == nil then
+		local ctx = {}
+		ctx.filename = vim.fn.expand("%:p")
+
+		local tw_root = M.find_root(ctx, tw_file_pattern)
+
+		if not tw_root then
+			cache.cache.tw_root_dir = false
+			return
+		end
+
+		cache.cache.tw_root_dir = M.current_file_path_absolute(tw_root)
+	end
+end
+
+M.set_prettier_root = function()
 	local prettier_file_pattern = {
 		"prettier",
 		".prettierrc",
@@ -48,38 +67,43 @@ M.check_prettier_tw_plugin = function()
 		".prettierrc.toml",
 	}
 
-	if cache.cache.tw_root_dir == nil then
+	if cache.cache.prettier_root_dir == nil then
 		local ctx = {}
 		ctx.filename = vim.fn.expand("%:p")
 
 		local prettier_root = M.find_root(ctx, prettier_file_pattern)
 
 		if not prettier_root then
-			cache.cache.tw_root_dir = false
-			return false
+			cache.cache.prettier_root_dir = false
+			return
 		end
 
-		cache.cache.tw_root_dir = M.current_file_path_absolute(prettier_root)
+		cache.cache.prettier_root_dir =
+			M.current_file_path_absolute(prettier_root)
 	end
+end
 
+M.set_prettier_tw_plugin = function()
 	if
 		cache.cache.has_tw_prettier_plugin == nil
-		and (cache.cache.tw_root_dir ~= false or cache.cache.tw_root_dir == nil)
+		and (
+			cache.cache.prettier_root_dir ~= false
+			or cache.cache.prettier_root_dir == nil
+		)
 	then
 		local result = M.find_text_in_file(
 			"prettier-plugin-tailwindcss",
-			cache.cache.tw_root_dir
+			cache.cache.prettier_root_dir
 		)
 
 		if not result then
 			cache.cache.has_tw_prettier_plugin = false
-			return false
 		end
 
 		cache.cache.has_tw_prettier_plugin = result > 0
+	else
+		cache.cache.has_tw_prettier_plugin = false
 	end
-
-	return cache.cache.has_tw_prettier_plugin
 end
 
 return M
