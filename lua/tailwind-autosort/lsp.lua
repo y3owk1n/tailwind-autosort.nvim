@@ -24,7 +24,7 @@ M.get_tw_lsp_client = function()
 		return
 	end
 
-	return tw_client[0]
+	return tw_client[1]
 end
 
 ---@param write_on_sort boolean?
