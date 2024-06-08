@@ -36,13 +36,6 @@ M.get_class_nodes = function(bufnr, all)
 
 		local queries = { "class", "cva", "cn" }
 
-		local class_table = {
-			tailwind = true,
-			cva_class = true,
-			variant_class = true,
-			cn_class = true,
-		}
-
 		for _, query_name in ipairs(queries) do
 			local query = vim.treesitter.query.get(lang, query_name)
 
@@ -50,7 +43,10 @@ M.get_class_nodes = function(bufnr, all)
 				for id, node in
 					query:iter_captures(root, bufnr, 0, -1, { all = true })
 				do
-					if class_table[query.captures[id]] then
+					-- if class_table[query.captures[id]] then
+					-- 	results[#results + 1] = node
+					-- end
+					if query.captures[id] == "tailwind" then
 						results[#results + 1] = node
 					end
 				end

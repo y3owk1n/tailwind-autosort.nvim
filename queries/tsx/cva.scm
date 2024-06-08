@@ -3,14 +3,14 @@
   (#any-of? @function_name "cva")
   (arguments
         [
-    (string (string_fragment) @cva_class)
+    (string (string_fragment) @tailwind)
     (object
       (pair
         value: (object
           (pair
             value: (object
           (pair
-              (string (string_fragment) @variant_class)
+              (string (string_fragment) @tailwind)
             )
             )
           )
