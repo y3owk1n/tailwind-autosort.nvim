@@ -1,9 +1,31 @@
 local M = {}
 
 local cache = require("tailwind-autosort.cache")
+local log = require("tailwind-autosort.log")
 
 M.find_root = function(ctx, file_patterns)
 	return vim.fs.find(file_patterns, { path = ctx.filename, upward = true })[1]
+end
+
+M.find_root_dir = function(ctx, file_patterns)
+	local found_file =
+		vim.fs.find(file_patterns, { path = ctx.filename, upward = true })[1]
+	if found_file then
+		return vim.fn.fnamemodify(found_file, ":h")
+	else
+		return nil
+	end
+end
+
+M.is_in_root_directory = function(ctx, file_patterns, cache_root_dir)
+	local root_dir = M.find_root_dir(ctx, file_patterns)
+
+	-- Compare the current directory with the root directory
+	if cache_root_dir == root_dir then
+		return true
+	else
+		return false
+	end
 end
 
 ---@param file string
@@ -35,18 +57,29 @@ M.set_tw_root = function()
 		"tailwind.config.js",
 	}
 
-	if cache.cache.tw_root_dir == nil then
-		local ctx = {}
-		ctx.filename = vim.fn.expand("%:p")
+	local ctx = {}
+	ctx.filename = vim.fn.expand("%:p")
 
-		local tw_root = M.find_root(ctx, tw_file_pattern)
+	if
+		cache.cache.tw_root_dir == nil
+		or M.is_in_root_directory(
+				ctx,
+				tw_file_pattern,
+				cache.cache.tw_root_dir
+			)
+			== false
+	then
+		log.info("Should only run 1st time")
+
+		local tw_root = M.find_root_dir(ctx, tw_file_pattern)
 
 		if not tw_root then
 			cache.cache.tw_root_dir = false
 			return
 		end
 
-		cache.cache.tw_root_dir = M.current_file_path_absolute(tw_root)
+		cache.cache.tw_root_dir = tw_root
+		return
 	end
 end
 
