@@ -69,8 +69,6 @@ M.set_tw_root = function()
 			)
 			== false
 	then
-		log.info("Should only run 1st time")
-
 		local tw_root = M.find_root_dir(ctx, tw_file_pattern)
 
 		if not tw_root then
