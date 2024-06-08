@@ -26,11 +26,10 @@ M.find_text_in_file = function(search_text, path)
 
 	result = result:gsub("%s+", "")
 
-	-- Convert the result to a number
 	local count = tonumber(result)
 
-	-- Return the count
-	return count or 0 -- If the conversion fails, return 0
+	-- If conversion fails, return 0
+	return count or 0
 end
 
 M.set_prettier_root = function()
