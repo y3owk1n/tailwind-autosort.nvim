@@ -57,7 +57,8 @@ The plugin works with tsx treesitter grammars and provides the following feature
 - Autosave after sorting
 - Trim leading spaces
 - Trim intermediate spaces within class string
-- Works with `class`, `className`, `cn`, `cva`, `clsx` and `twMerge`
+- Works with `className`, `cn`, `cva`, `clsx` and `twMerge` within `single repo` or `monorepo`
+- Works with tenary conditions within `className`, `cn`, `clsx`, `twMerge`
 - Dedupe repeated classes
 
 > [!NOTE]
