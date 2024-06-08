@@ -115,25 +115,22 @@ M.set_prettier_root = function()
 end
 
 M.set_prettier_tw_plugin = function()
-	if
-		cache.cache.has_tw_prettier_plugin == nil
-		and (
+	if cache.cache.has_tw_prettier_plugin == nil then
+		if
 			cache.cache.prettier_root_dir ~= false
 			or cache.cache.prettier_root_dir == nil
-		)
-	then
-		local result = M.find_text_in_file(
-			"prettier-plugin-tailwindcss",
-			cache.cache.prettier_root_dir
-		)
+		then
+			local result = M.find_text_in_file(
+				"prettier-plugin-tailwindcss",
+				cache.cache.prettier_root_dir
+			)
 
-		if not result then
-			cache.cache.has_tw_prettier_plugin = false
+			if not result then
+				cache.cache.has_tw_prettier_plugin = false
+			end
+
+			cache.cache.has_tw_prettier_plugin = result > 0
 		end
-
-		cache.cache.has_tw_prettier_plugin = result > 0
-	else
-		cache.cache.has_tw_prettier_plugin = false
 	end
 end
 
