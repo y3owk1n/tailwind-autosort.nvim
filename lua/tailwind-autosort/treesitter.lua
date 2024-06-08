@@ -44,9 +44,6 @@ M.get_class_nodes = function(bufnr, all)
 				for id, node in
 					query:iter_captures(root, bufnr, 0, -1, { all = true })
 				do
-					-- if class_table[query.captures[id]] then
-					-- 	results[#results + 1] = node
-					-- end
 					if query.captures[id] == "tailwind" then
 						results[#results + 1] = node
 					end

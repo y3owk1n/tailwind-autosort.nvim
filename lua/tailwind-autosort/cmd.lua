@@ -2,8 +2,6 @@ local M = {}
 
 local state = require("tailwind-autosort.state")
 local lsp = require("tailwind-autosort.lsp")
-local log = require("tailwind-autosort.log")
-local file = require("tailwind-autosort.file")
 local cache = require("tailwind-autosort.cache")
 
 local augroup = vim.api.nvim_create_augroup
