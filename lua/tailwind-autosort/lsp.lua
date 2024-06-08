@@ -36,21 +36,11 @@ M.run_sort = function(write_on_sort)
 		return
 	end
 
-	-- Set tailwind root into cache
-	file.set_tw_root()
-
 	-- Set prettier root into cache
 	file.set_prettier_root()
 
 	-- Set has prettier tailwind plugin into cache
 	file.set_prettier_tw_plugin()
-
-	-- Check if has tailwind config in the project
-	if not cache.cache.tw_root_dir then
-		log.warn("Tailwind config not found, abort!")
-
-		return
-	end
 
 	-- Check if prettier tailwind plugin is installed
 	if cache.cache.has_tw_prettier_plugin then
