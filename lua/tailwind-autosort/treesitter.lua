@@ -10,6 +10,7 @@ local supported_filetypes = {
 
 ---@param bufnr number
 ---@param all boolean?
+---@return table|nil
 M.get_class_nodes = function(bufnr, all)
 	local ft = vim.bo[bufnr].ft
 	local filetypes = vim.tbl_extend("keep", {}, supported_filetypes)
@@ -59,6 +60,7 @@ end
 
 ---@param node TSNode
 ---@param bufnr number
+---@return integer,integer,integer,integer
 M.get_class_range = function(node, bufnr)
 	local start_row, start_col, end_row, end_col = node:range()
 	local children = node:named_children()
