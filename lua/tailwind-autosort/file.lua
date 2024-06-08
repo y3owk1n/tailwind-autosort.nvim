@@ -2,6 +2,9 @@ local M = {}
 
 local cache = require("tailwind-autosort.cache")
 
+---@param ctx { filename: string}
+---@param file_patterns table<string>
+---@return string
 M.find_root = function(ctx, file_patterns)
 	return vim.fs.find(file_patterns, { path = ctx.filename, upward = true })[1]
 end
@@ -14,6 +17,7 @@ end
 
 ---@param search_text string
 ---@param path string
+---@return number
 M.find_text_in_file = function(search_text, path)
 	local find_command =
 		string.format("rg --count '\\\"%s\\\"' %s", search_text, path)
