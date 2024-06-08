@@ -8,18 +8,23 @@ local cache = require("tailwind-autosort.cache")
 
 ---@return vim.lsp.Client|nil
 M.get_tw_lsp_client = function()
+	local tw_client = {}
 	---@diagnostic disable-next-line: deprecated
 	local get_client = vim.lsp.get_clients or vim.lsp.get_active_clients
 	local clients = get_client({ name = "tailwindcss" })
 
-	local tw_client = clients[1]
+	for _, client in ipairs(clients) do
+		if client.root_dir == cache.cache.tw_root_dir then
+			table.insert(tw_client, client)
+		end
+	end
 
 	if not tw_client then
 		log.warn("Required tailwind-language-server is not running")
 		return
 	end
 
-	return tw_client
+	return tw_client[0]
 end
 
 ---@param write_on_sort boolean?
