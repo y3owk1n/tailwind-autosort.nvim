@@ -99,6 +99,8 @@ M.run_sort = function(write_on_sort)
 				return
 			end
 
+			local total_lines_sorted = 0
+
 			for i, edit in pairs(result.classLists) do
 				local lines = vim.split(edit, "\n")
 				local original_lines = vim.split(class_text[i], "\n")
@@ -145,6 +147,7 @@ M.run_sort = function(write_on_sort)
 				end
 
 				if lines_changed then
+					total_lines_sorted = total_lines_sorted + 1
 					local set_text = function()
 						vim.api.nvim_buf_set_text(
 							bufnr,
@@ -157,12 +160,18 @@ M.run_sort = function(write_on_sort)
 					end
 
 					pcall(set_text)
-					if state.state.autosort_on_save.notify_after_save then
-						log.info(
-							"Tailwind class sorted at line " .. (start_row + 1)
-						)
-					end
 				end
+			end
+
+			if
+				total_lines_sorted > 0
+				and state.state.autosort_on_save.notify_after_save
+			then
+				log.info(
+					"Tailwind class sorted for "
+						.. total_lines_sorted
+						.. " lines"
+				)
 			end
 
 			if vim.bo.modified and write_on_sort then
