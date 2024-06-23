@@ -41,9 +41,7 @@ M.get_class_nodes = function(bufnr, all)
 			local query = vim.treesitter.query.get(lang, query_name)
 
 			if query then
-				for id, node in
-					query:iter_captures(root, bufnr, 0, -1, { all = true })
-				do
+				for id, node in query:iter_captures(root, bufnr, 0, -1) do
 					if query.captures[id] == "tailwind" then
 						results[#results + 1] = node
 					end
