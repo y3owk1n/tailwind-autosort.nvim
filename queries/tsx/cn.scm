@@ -10,6 +10,9 @@
             (ternary_expression
                 alternative: (string (string_fragment) @tailwind)
             )
+            (binary_expression
+                right: (string (string_fragment) @tailwind)
+            )
         ])
     )
 )
