@@ -19,5 +19,10 @@
                 )
             ])
         )
+        (jsx_expression
+            (binary_expression
+              right: (string (string_fragment) @tailwind)
+            )
+        )
     ]
 )
