@@ -31,7 +31,7 @@ end
 M.create_autocmd = function()
 	autocmd("BufWritePre", {
 		group = M.create_augroup("format_on_save"),
-		pattern = { "*.tsx", "*.jsx" },
+		pattern = { "*.tsx", "*.jsx", "*.css" },
 		callback = function()
 			vim.schedule(function()
 				lsp.run_sort(true)

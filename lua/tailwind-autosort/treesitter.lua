@@ -6,6 +6,7 @@ local log = require("tailwind-autosort.log")
 local supported_filetypes = {
 	"javascriptreact",
 	"typescriptreact",
+	"css",
 }
 
 ---@param bufnr number
