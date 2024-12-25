@@ -21,14 +21,12 @@ M.get_tw_lsp_client = function()
 	return tw_client
 end
 
----@param write_on_sort boolean?
-M.run_sort = function(write_on_sort)
-	write_on_sort = write_on_sort or false
-
-	local enabled_autosave = state.state.autosort_on_save.enabled
+M.run_sort = function()
+	local enabled_autosort_onsave = state.state.autosort_on_save.enabled
+	local write_on_sort = state.state.autosort_on_save.enable_write
 
 	-- Check if auto format is enabled
-	if not enabled_autosave then
+	if not enabled_autosort_onsave then
 		log.info(
 			"Auto format for TailwindSort is disabled, run :TailwindSortEnable to enable auto format"
 		)
@@ -172,10 +170,10 @@ M.run_sort = function(write_on_sort)
 						.. total_lines_sorted
 						.. " lines"
 				)
-			end
 
-			if vim.bo.modified and write_on_sort then
-				vim.cmd("write")
+				if vim.bo.modified and write_on_sort then
+					vim.cmd("write")
+				end
 			end
 		end,
 		bufnr
