@@ -29,7 +29,7 @@ M.create_user_command = function()
 end
 
 M.create_autocmd = function()
-	autocmd("BufWritePre", {
+	autocmd("BufWritePost", {
 		group = M.create_augroup("format_on_save"),
 		pattern = { "*.tsx", "*.jsx", "*.css" },
 		callback = function()
