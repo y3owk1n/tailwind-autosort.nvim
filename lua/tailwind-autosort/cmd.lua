@@ -34,7 +34,7 @@ M.create_autocmd = function()
 		pattern = { "*.tsx", "*.jsx", "*.css" },
 		callback = function()
 			vim.schedule(function()
-				lsp.run_sort(true)
+				lsp.run_sort()
 			end)
 		end,
 	})

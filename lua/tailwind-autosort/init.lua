@@ -10,6 +10,7 @@ M.setup = function(options)
 
 	state.state.autosort_on_save = {
 		enabled = config.options.autosort_on_save.enabled,
+		enable_write = config.options.autosort_on_save.enable_write,
 		notify_after_save = config.options.autosort_on_save.notify_after_save,
 	}
 
