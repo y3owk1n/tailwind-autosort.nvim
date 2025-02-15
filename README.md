@@ -81,9 +81,9 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 ```lua
 -- tailwind-autosort.lua
 return {
-    "y3owk1n/tailwind-autosort.nvim",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    opts = {} -- your configuration
+ "y3owk1n/tailwind-autosort.nvim",
+ dependencies = { "nvim-treesitter/nvim-treesitter" },
+ opts = {} -- your configuration
 }
 ```
 
@@ -102,11 +102,11 @@ Here is the default configuration:
 ```lua
 ---@type TailwindAutoSort.Option
 {
-    autosort_on_save = {
-        enabled = true, -- You can toggle this later with :TailwindSortEnable or :TailwindSortDisable
-  enable_write = true -- This will enable auto write after sort to save you time to do 2x :w,
-        notify_after_save = true -- To notify after save
-    },
+ -- enabling autocommand will let tailwind-autosort to update the text at 'BufWritePre'
+ -- If your editor does format on save after write, it should work together
+ enable_autocmd = true,
+ -- This option will notify you number of lines that is affected via vim.notify
+ notify_line_changed = true,
 }
 ```
 
@@ -115,9 +115,6 @@ Here is the default configuration:
 Available commands:
 
 - `TailwindAutoSortRun`: sorts all classes in the current buffer without saving.
-- `TailwindAutoSortGetState`: get the current autosave state.
-- `TailwindAutoSortEnable`: enable autosave after sorting.
-- `TailwindAutoSortDisable`: disable autosave after sorting.
 - `TailwindAutoSortResetCache`: reset the cache that saves `tailwind config path` and `has prettier-plugin-tailwindcss`, useful when you want to change project without re-opening neovim.
 
 ## Related projects
