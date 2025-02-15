@@ -21,14 +21,15 @@ M.create_user_command = function()
 	usercmd("TailwindAutoSortResetCache", cache.reset_cache, {})
 end
 
-M.create_autocmd = function()
-	autocmd("BufWritePost", {
+---@param options TailwindAutoSort.Option
+M.create_autocmd = function(options)
+	autocmd("BufWritePre", {
 		group = M.create_augroup("format_on_save"),
 		pattern = { "*.tsx", "*.jsx", "*.css" },
 		callback = function()
-			vim.schedule(function()
+			if options.enable_autocmd then
 				lsp.run_sort()
-			end)
+			end
 		end,
 	})
 end

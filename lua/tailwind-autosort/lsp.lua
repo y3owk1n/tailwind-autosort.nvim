@@ -22,6 +22,7 @@ M.get_tw_lsp_client = function()
 end
 
 M.run_sort = function()
+	local done = false
 
 	-- Set prettier root into cache
 	file.set_prettier_root()
@@ -150,6 +151,8 @@ M.run_sort = function()
 				end
 			end
 
+			done = true
+
 			if
 				total_lines_sorted > 0 and config.options.notify_line_changed
 			then
@@ -158,14 +161,15 @@ M.run_sort = function()
 						.. total_lines_sorted
 						.. " lines"
 				)
-
-				if vim.bo.modified and write_on_sort then
-					vim.cmd("write")
-				end
 			end
 		end,
 		bufnr
 	)
+
+	--- wait a while to let sorting done
+	vim.wait(1000, function()
+		return done
+	end)
 end
 
 return M
