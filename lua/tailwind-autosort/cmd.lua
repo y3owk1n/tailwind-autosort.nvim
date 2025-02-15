@@ -21,15 +21,12 @@ M.create_user_command = function()
 	usercmd("TailwindAutoSortResetCache", cache.reset_cache, {})
 end
 
----@param options TailwindAutoSort.Option
-M.create_autocmd = function(options)
+M.create_autocmd = function()
 	autocmd("BufWritePre", {
 		group = M.create_augroup("format_on_save"),
 		pattern = { "*.tsx", "*.jsx", "*.css" },
 		callback = function()
-			if options.enable_autocmd then
-				lsp.run_sort()
-			end
+			lsp.run_sort()
 		end,
 	})
 end
