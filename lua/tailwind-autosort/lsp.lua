@@ -2,7 +2,7 @@ local M = {}
 
 local log = require("tailwind-autosort.log")
 local treesitter = require("tailwind-autosort.treesitter")
-local state = require("tailwind-autosort.state")
+local config = require("tailwind-autosort.config")
 local file = require("tailwind-autosort.file")
 local cache = require("tailwind-autosort.cache")
 
@@ -22,17 +22,6 @@ M.get_tw_lsp_client = function()
 end
 
 M.run_sort = function()
-	local enabled_autosort_onsave = state.state.autosort_on_save.enabled
-	local write_on_sort = state.state.autosort_on_save.enable_write
-
-	-- Check if auto format is enabled
-	if not enabled_autosort_onsave then
-		log.info(
-			"Auto format for TailwindSort is disabled, run :TailwindSortEnable to enable auto format"
-		)
-
-		return
-	end
 
 	-- Set prettier root into cache
 	file.set_prettier_root()
@@ -162,8 +151,7 @@ M.run_sort = function()
 			end
 
 			if
-				total_lines_sorted > 0
-				and state.state.autosort_on_save.notify_after_save
+				total_lines_sorted > 0 and config.options.notify_line_changed
 			then
 				log.info(
 					"Tailwind class sorted for "

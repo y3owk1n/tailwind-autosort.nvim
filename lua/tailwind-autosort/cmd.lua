@@ -1,6 +1,5 @@
 local M = {}
 
-local state = require("tailwind-autosort.state")
 local lsp = require("tailwind-autosort.lsp")
 local cache = require("tailwind-autosort.cache")
 
@@ -18,12 +17,6 @@ M.create_user_command = function()
 	usercmd("TailwindAutoSortRun", function()
 		vim.schedule(lsp.run_sort)
 	end, {})
-
-	usercmd("TailwindAutoSortGetState", state.get, {})
-
-	usercmd("TailwindAutoSortEnable", state.enable, {})
-
-	usercmd("TailwindAutoSortDisable", state.disable, {})
 
 	usercmd("TailwindAutoSortResetCache", cache.reset_cache, {})
 end
