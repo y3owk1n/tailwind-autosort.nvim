@@ -8,7 +8,10 @@ M.setup = function(options)
 	config.options = vim.tbl_deep_extend("keep", options, config.options)
 
 	cmd.create_user_command()
-	cmd.create_autocmd(config.options)
+
+	if config.options.enable_autocmd then
+		cmd.create_autocmd()
+	end
 end
 
 return M
