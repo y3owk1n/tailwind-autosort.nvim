@@ -13,20 +13,24 @@ M.create_augroup = function(name)
 	return augroup("tailwind-autosort_" .. name, { clear = true })
 end
 
-M.create_user_command = function()
+---@param config TailwindAutoSort.Config
+M.create_user_command = function(config)
 	usercmd("TailwindAutoSortRun", function()
-		vim.schedule(lsp.run_sort)
+		vim.schedule(function()
+			lsp.run_sort(config)
+		end)
 	end, {})
 
 	usercmd("TailwindAutoSortResetCache", cache.reset_cache, {})
 end
 
-M.create_autocmd = function()
+---@param config TailwindAutoSort.Config
+M.create_autocmd = function(config)
 	autocmd("BufWritePre", {
-		group = M.create_augroup("format_on_save"),
+		group = M.create_augroup("sort_write_pre"),
 		pattern = { "*.tsx", "*.jsx", "*.css" },
 		callback = function()
-			lsp.run_sort()
+			lsp.run_sort(config)
 		end,
 	})
 end

@@ -2,7 +2,6 @@ local M = {}
 
 local log = require("tailwind-autosort.log")
 local treesitter = require("tailwind-autosort.treesitter")
-local config = require("tailwind-autosort.config")
 local file = require("tailwind-autosort.file")
 local cache = require("tailwind-autosort.cache")
 
@@ -21,7 +20,8 @@ M.get_tw_lsp_client = function()
 	return tw_client
 end
 
-M.run_sort = function()
+---@param config TailwindAutoSort.Config
+M.run_sort = function(config)
 	local done = false
 
 	-- Set prettier root into cache
@@ -153,9 +153,7 @@ M.run_sort = function()
 
 			done = true
 
-			if
-				total_lines_sorted > 0 and config.options.notify_line_changed
-			then
+			if total_lines_sorted > 0 and config.notify_line_changed then
 				log.info(
 					"Tailwind class sorted for "
 						.. total_lines_sorted
