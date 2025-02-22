@@ -40,7 +40,6 @@ The plugin works with tsx treesitter grammars and provides the following feature
 > For now, i am using tsx, so it will work with tsx only. Feel free to contribute for more treesitter .scm matching for various filetype like astro, vue, ...
 
 - Class sorting (without [prettier-plugin](https://github.com/tailwindlabs/prettier-plugin-tailwindcss))
-- Autosave after sorting
 - Trim leading spaces
 - Trim intermediate spaces within class string
 - Works with `className`, `cn`, `cva`, `clsx` and `twMerge` within `single repo` or `monorepo`
