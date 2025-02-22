@@ -1,8 +1,6 @@
 local M = {}
 
----@class TailwindAutoSort.Cache
----@field prettier_root_dir string|nil|false
----@field has_tw_prettier_plugin boolean|nil
+---@type TailwindAutoSort.Cache
 M.cache = {
 	prettier_root_dir = nil,
 	has_tw_prettier_plugin = nil,

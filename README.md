@@ -70,6 +70,7 @@ return {
  version = "*", -- remove this if you want to follow `main` branch
  event = "VeryLazy",
  dependencies = { "nvim-treesitter/nvim-treesitter" },
+ ---@type TailwindAutoSort.Config
  opts = {} -- your configuration
 }
 ```
@@ -87,7 +88,7 @@ require("tailwind-autosort").setup({
 Here is the default configuration:
 
 ```lua
----@type TailwindAutoSort.Option
+---@type TailwindAutoSort.Config
 {
  -- enabling autocommand will let tailwind-autosort to update the text at 'BufWritePre'
  -- If your editor does format on save after write, it should work together
@@ -110,7 +111,7 @@ Here are some related projects:
 
 - [tailwindcss-intellisense](https://github.com/tailwindlabs/tailwindcss-intellisense) (official vscode extension)
 - [tailwind-sorter.nvim](https://github.com/laytan/tailwind-sorter.nvim) (uses external scripts)
-- [tailwind-tools.nvim](https://github.com/luckasRanarison/tailwind-tools.nvim) (the one that i copied some code from)
+- [tailwind-tools.nvim](https://github.com/luckasRanarison/tailwind-tools.nvim)
 
 ## 🤝 Contributing
 
