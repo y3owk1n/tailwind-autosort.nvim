@@ -1,8 +1,6 @@
 local M = {}
 
----@class TailwindAutoSort.Option
----@field enable_autocmd boolean
----@field notify_line_changed boolean
+---@type TailwindAutoSort.Config
 M.options = {
 	enable_autocmd = true,
 	notify_line_changed = true,
