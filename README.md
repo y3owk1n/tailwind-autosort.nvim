@@ -88,7 +88,9 @@ require("tailwind-autosort").setup({
 Here is the default configuration:
 
 ```lua
----@type TailwindAutoSort.Config
+---@class TailwindAutoSort.Config
+---@field enable_autocmd? boolean
+---@field notify_line_changed? boolean
 {
  -- enabling autocommand will let tailwind-autosort to update the text at 'BufWritePre'
  -- If your editor does format on save after write, it should work together
