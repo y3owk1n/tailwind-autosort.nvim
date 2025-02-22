@@ -82,6 +82,8 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 -- tailwind-autosort.lua
 return {
  "y3owk1n/tailwind-autosort.nvim",
+ version = "*", -- remove this if you want to follow `main` branch
+ event = "VeryLazy",
  dependencies = { "nvim-treesitter/nvim-treesitter" },
  opts = {} -- your configuration
 }
