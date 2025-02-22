@@ -1,11 +1,11 @@
 > [!IMPORTANT]
 > This plugin is a community project and is **NOT** officially supported by [Tailwind Labs](https://github.com/tailwindlabs).
 
-# tailwind-autosort.nvim
+# 🌬️ tailwind-autosort.nvim
 
-Format tailwind classes without `prettier-plugin-tailwindcss` in `class`, `className`, `cn`, `cva`, `clsx` and `twMerge`
+Format tailwind classes without `prettier-plugin-tailwindcss` in `class`, `className`, `cn`, `cva`, `clsx` and `twMerge`.
 
-## Previews
+## 👀 Previews
 
 ### Sort & Trim in className
 
@@ -23,9 +23,7 @@ Format tailwind classes without `prettier-plugin-tailwindcss` in `class`, `class
 
 <https://github.com/y3owk1n/tailwind-autosort.nvim/assets/62775956/4fb125b8-fd60-402f-80a8-6d0b3d0387ee>
 
-## Motivation
-
-This project is originated, inspired and copied (yes, i copied) some of the functionality from [tailwind-tools.nvim](https://github.com/luckasRanarison/tailwind-tools.nvim). Please please please support the actual creator instead.
+## 💭 Motivation
 
 In my workflow, I use Prettier and Biome differently across various projects. Sometimes, I don’t use either. However, I still want the capability to sort classes, regardless of the project's formatting setup.
 
@@ -34,19 +32,7 @@ In my workflow, I use Prettier and Biome differently across various projects. So
 
 This project provides a way to achieve similar class sorting functionality.
 
-At the moment I do not need the full suite of tailwind-tools but just class sorting. This project extends sorting capabilities to work with `cn`, `cva`, `clsx` and `twMerge`, with sort & save functionality, and dedupe repeated classes.
-
-## Contents
-
-- [Features](#features)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Commands](#commands)
-- [Related projects](#related-projects)
-- [Contributing](#contributing)
-
-## Features
+## ✨ Features
 
 The plugin works with tsx treesitter grammars and provides the following features:
 
@@ -64,7 +50,7 @@ The plugin works with tsx treesitter grammars and provides the following feature
 > [!NOTE]
 > Language services like autocompletion, diagnostics and hover are already provided by [tailwindcss-language-server](https://github.com/tailwindlabs/tailwindcss-intellisense/tree/master/packages/tailwindcss-language-server).
 
-## Prerequisites
+## ⚡️ Prerequisites
 
 - Neovim v0.9 or higher (v0.10 is recommended)
 - [tailwindcss-language-server](https://github.com/tailwindlabs/tailwindcss-intellisense/tree/master/packages/tailwindcss-language-server) >= `v0.0.14` (can be installed using [Mason](https://github.com/williamboman/mason.nvim))
@@ -74,7 +60,7 @@ The plugin works with tsx treesitter grammars and provides the following feature
 > [!TIP]
 > If you are not familiar with neovim LSP ecosystem check out [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) to learn how to setup the LSP.
 
-## Installation
+## 📦 Installation
 
 Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 
@@ -97,7 +83,7 @@ require("tailwind-autosort").setup({
 })
 ```
 
-## Configuration
+## ⚙️ Configuration
 
 Here is the default configuration:
 
@@ -112,14 +98,14 @@ Here is the default configuration:
 }
 ```
 
-## Commands
+## 🚀 Commands
 
 Available commands:
 
 - `TailwindAutoSortRun`: sorts all classes in the current buffer without saving.
 - `TailwindAutoSortResetCache`: reset the cache that saves `tailwind config path` and `has prettier-plugin-tailwindcss`, useful when you want to change project without re-opening neovim.
 
-## Related projects
+## 🔭 Related projects
 
 Here are some related projects:
 
@@ -127,7 +113,7 @@ Here are some related projects:
 - [tailwind-sorter.nvim](https://github.com/laytan/tailwind-sorter.nvim) (uses external scripts)
 - [tailwind-tools.nvim](https://github.com/luckasRanarison/tailwind-tools.nvim) (the one that i copied some code from)
 
-## Contributing
+## 🤝 Contributing
 
 Read the documentation carefully before submitting any issue.
 

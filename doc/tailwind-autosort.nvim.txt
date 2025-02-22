@@ -6,7 +6,6 @@ Table of Contents                   *tailwind-autosort.nvim-table-of-contents*
 1. tailwind-autosort.nvim      |tailwind-autosort.nvim-tailwind-autosort.nvim|
   - Previews          |tailwind-autosort.nvim-tailwind-autosort.nvim-previews|
   - Motivation      |tailwind-autosort.nvim-tailwind-autosort.nvim-motivation|
-  - Contents          |tailwind-autosort.nvim-tailwind-autosort.nvim-contents|
   - Features          |tailwind-autosort.nvim-tailwind-autosort.nvim-features|
   - Prerequisites|tailwind-autosort.nvim-tailwind-autosort.nvim-prerequisites|
   - Installation  |tailwind-autosort.nvim-tailwind-autosort.nvim-installation|
@@ -74,17 +73,6 @@ sorting. This project extends sorting capabilities to work with `cn`, `cva`,
 classes.
 
 
-CONTENTS              *tailwind-autosort.nvim-tailwind-autosort.nvim-contents*
-
-- |tailwind-autosort.nvim-features|
-- |tailwind-autosort.nvim-prerequisites|
-- |tailwind-autosort.nvim-installation|
-- |tailwind-autosort.nvim-configuration|
-- |tailwind-autosort.nvim-commands|
-- |tailwind-autosort.nvim-related-projects|
-- |tailwind-autosort.nvim-contributing|
-
-
 FEATURES              *tailwind-autosort.nvim-tailwind-autosort.nvim-features*
 
 The plugin works with tsx treesitter grammars and provides the following
@@ -146,7 +134,7 @@ Ifyou are using other package managers you need to call `setup`
 
 CONFIGURATION    *tailwind-autosort.nvim-tailwind-autosort.nvim-configuration*
 
-Hereis the default configuration:
+Here is the default configuration:
 
 >lua
     ---@type TailwindAutoSort.Option
