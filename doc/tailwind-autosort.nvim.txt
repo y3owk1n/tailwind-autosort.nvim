@@ -21,7 +21,7 @@ Table of Contents                   *tailwind-autosort.nvim-table-of-contents*
 1. tailwind-autosort.nvim      *tailwind-autosort.nvim-tailwind-autosort.nvim*
 
 Format tailwind classes without `prettier-plugin-tailwindcss` in `class`,
-`className`, `cn`, `cva`, `clsx` and `twMerge`
+`className`, `cn`, `cva`, `clsx` and `twMerge`.
 
 
 PREVIEWS              *tailwind-autosort.nvim-tailwind-autosort.nvim-previews*
@@ -53,11 +53,6 @@ DEDUPE CLASSES ~
 
 MOTIVATION          *tailwind-autosort.nvim-tailwind-autosort.nvim-motivation*
 
-This project is originated, inspired and copied (yes, i copied) some of the
-functionality from tailwind-tools.nvim
-<https://github.com/luckasRanarison/tailwind-tools.nvim>. Please please please
-support the actual creator instead.
-
 In my workflow, I use Prettier and Biome differently across various projects.
 Sometimes, I don’t use either. However, I still want the capability to sort
 classes, regardless of the project’s formatting setup.
@@ -66,11 +61,6 @@ classes, regardless of the project’s formatting setup.
 - For Biome, there is `useSortedClass` (still a work in progress).
 
 This project provides a way to achieve similar class sorting functionality.
-
-At the moment I do not need the full suite of tailwind-tools but just class
-sorting. This project extends sorting capabilities to work with `cn`, `cva`,
-`clsx` and `twMerge`, with sort & save functionality, and dedupe repeated
-classes.
 
 
 FEATURES              *tailwind-autosort.nvim-tailwind-autosort.nvim-features*
