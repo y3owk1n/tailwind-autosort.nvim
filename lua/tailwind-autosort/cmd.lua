@@ -1,8 +1,5 @@
 local M = {}
 
-local lsp = require("tailwind-autosort.lsp")
-local cache = require("tailwind-autosort.cache")
-
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 local usercmd = vim.api.nvim_create_user_command
@@ -17,11 +14,15 @@ end
 M.create_user_command = function(config)
 	usercmd("TailwindAutoSortRun", function()
 		vim.schedule(function()
-			lsp.run_sort(config)
+			require("tailwind-autosort.lsp").run_sort(config)
 		end)
 	end, {})
 
-	usercmd("TailwindAutoSortResetCache", cache.reset_cache, {})
+	usercmd(
+		"TailwindAutoSortResetCache",
+		require("tailwind-autosort.cache").reset_cache,
+		{}
+	)
 end
 
 ---@param config TailwindAutoSort.Config
@@ -30,7 +31,7 @@ M.create_autocmd = function(config)
 		group = M.create_augroup("sort_write_pre"),
 		pattern = { "*.tsx", "*.jsx", "*.css" },
 		callback = function()
-			lsp.run_sort(config)
+			require("tailwind-autosort.lsp").run_sort(config)
 		end,
 	})
 end

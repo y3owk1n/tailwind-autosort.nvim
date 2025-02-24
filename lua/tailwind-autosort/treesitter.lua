@@ -1,8 +1,5 @@
 local M = {}
 
-local parsers = require("nvim-treesitter.parsers")
-local log = require("tailwind-autosort.log")
-
 local supported_filetypes = {
 	"javascriptreact",
 	"typescriptreact",
@@ -21,11 +18,11 @@ M.get_class_nodes = function(bufnr, all)
 		return
 	end
 
-	local parser = parsers.get_parser(bufnr)
+	local parser = require("nvim-treesitter.parsers").get_parser(bufnr)
 
 	if not parser then
 		local message = string.format("No parser available for %s", ft)
-		log.warn(message)
+		require("tailwind-autosort.log").warn(message)
 		return
 	end
 
