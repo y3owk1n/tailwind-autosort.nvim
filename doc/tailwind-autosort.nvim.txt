@@ -1,4 +1,4 @@
-*tailwind-autosort.nvim.txt* For Neovim >= 0.10.0Last change: 2025 February 22
+*tailwind-autosort.nvim.txt* For Neovim >= 0.10.0Last change: 2025 February 25
 
 ==============================================================================
 Table of Contents                   *tailwind-autosort.nvim-table-of-contents*
