@@ -73,96 +73,98 @@ M.run_sort = function(config)
 	end
 
 	params.classLists = class_text
-	client.request(
-		"@/tailwindCSS/sortSelection",
-		params,
-		function(err, result, _, _)
-			if err then
-				return require("tailwind-autosort.log").error(err.message)
-			end
-			if result.error then
-				return require("tailwind-autosort.log").error(result.error)
-			end
-			if not result or not vim.api.nvim_buf_is_valid(bufnr) then
-				return
-			end
 
-			local total_lines_sorted = 0
+	local request = client.request
 
-			for i, edit in pairs(result.classLists) do
-				local lines = vim.split(edit, "\n")
-				local original_lines = vim.split(class_text[i], "\n")
+	if vim.version().minor >= 11 then
+		request = function(...)
+			return client:request(...)
+		end
+	end
 
-				for j, line in ipairs(lines) do
-					-- Split the line into individual classNames
-					local classNames = {}
-					for className in line:gmatch("%S+") do
-						table.insert(classNames, className)
-					end
+	request("@/tailwindCSS/sortSelection", params, function(err, result, _, _)
+		if err then
+			return require("tailwind-autosort.log").error(err.message)
+		end
+		if result.error then
+			return require("tailwind-autosort.log").error(result.error)
+		end
+		if not result or not vim.api.nvim_buf_is_valid(bufnr) then
+			return
+		end
 
-					-- Remove duplicates
-					local seen = {}
-					local uniqueClassNames = {}
-					for _, className in ipairs(classNames) do
-						if not seen[className] then
-							seen[className] = true
-							table.insert(uniqueClassNames, className)
-						end
-					end
+		local total_lines_sorted = 0
 
-					-- Join unique classNames back together with single spaces
-					lines[j] = table.concat(uniqueClassNames, " ")
+		for i, edit in pairs(result.classLists) do
+			local lines = vim.split(edit, "\n")
+			local original_lines = vim.split(class_text[i], "\n")
+
+			for j, line in ipairs(lines) do
+				-- Split the line into individual classNames
+				local classNames = {}
+				for className in line:gmatch("%S+") do
+					table.insert(classNames, className)
 				end
 
-				for k, line in ipairs(lines) do
-					-- Remove extra spaces between class names
-					line = line:gsub("%s+", " ")
-					-- Trim leading and trailing spaces
-					line = line:gsub("^%s*(.-)%s*$", "%1")
-					lines[k] = line
-				end
-
-				local start_row, start_col, end_row, end_col =
-					unpack(class_ranges[i])
-
-				-- Only replace the lines if they are different
-				local lines_changed = false
-				for k, line in ipairs(lines) do
-					if line ~= original_lines[k] then
-						lines_changed = true
-						break
+				-- Remove duplicates
+				local seen = {}
+				local uniqueClassNames = {}
+				for _, className in ipairs(classNames) do
+					if not seen[className] then
+						seen[className] = true
+						table.insert(uniqueClassNames, className)
 					end
 				end
 
-				if lines_changed then
-					total_lines_sorted = total_lines_sorted + 1
-					local set_text = function()
-						vim.api.nvim_buf_set_text(
-							bufnr,
-							start_row,
-							start_col,
-							end_row,
-							end_col,
-							lines
-						)
-					end
+				-- Join unique classNames back together with single spaces
+				lines[j] = table.concat(uniqueClassNames, " ")
+			end
 
-					pcall(set_text)
+			for k, line in ipairs(lines) do
+				-- Remove extra spaces between class names
+				line = line:gsub("%s+", " ")
+				-- Trim leading and trailing spaces
+				line = line:gsub("^%s*(.-)%s*$", "%1")
+				lines[k] = line
+			end
+
+			local start_row, start_col, end_row, end_col =
+				unpack(class_ranges[i])
+
+			-- Only replace the lines if they are different
+			local lines_changed = false
+			for k, line in ipairs(lines) do
+				if line ~= original_lines[k] then
+					lines_changed = true
+					break
 				end
 			end
 
-			done = true
+			if lines_changed then
+				total_lines_sorted = total_lines_sorted + 1
+				local set_text = function()
+					vim.api.nvim_buf_set_text(
+						bufnr,
+						start_row,
+						start_col,
+						end_row,
+						end_col,
+						lines
+					)
+				end
 
-			if total_lines_sorted > 0 and config.notify_line_changed then
-				require("tailwind-autosort.log").info(
-					"Tailwind class sorted for "
-						.. total_lines_sorted
-						.. " lines"
-				)
+				pcall(set_text)
 			end
-		end,
-		bufnr
-	)
+		end
+
+		done = true
+
+		if total_lines_sorted > 0 and config.notify_line_changed then
+			require("tailwind-autosort.log").info(
+				"Tailwind class sorted for " .. total_lines_sorted .. " lines"
+			)
+		end
+	end, bufnr)
 
 	--- wait a while to let sorting done
 	vim.wait(1000, function()

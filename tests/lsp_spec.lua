@@ -135,7 +135,7 @@ describe("tailwind-autosort.lsp module", function()
 			-- Create a dummy lsp client that simulates a sorting request.
 			local dummy_client = {
 				name = "tailwindcss",
-				request = function(method, params, callback, bufnr_arg)
+				request = function(self, method, params, callback, bufnr_arg)
 					-- For our test, assume params.classLists = {"b c a"}.
 					-- Simulate sorting to "a b c".
 					callback(nil, { classLists = { "a b c" } }, nil, nil)
