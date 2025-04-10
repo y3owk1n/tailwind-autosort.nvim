@@ -17,8 +17,9 @@ M.get_tw_lsp_client = function()
 	return tw_client
 end
 
----@param config TailwindAutoSort.Config
-M.run_sort = function(config)
+M.run_sort = function()
+	local config = require("tailwind-autosort.config").config
+
 	local done = false
 
 	-- Set prettier root into cache
