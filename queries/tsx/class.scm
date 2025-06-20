@@ -1,6 +1,6 @@
 (jsx_attribute
     (property_identifier) @_attribute_name
-    (#any-of? @_attribute_name "class" "className")
+    (#any-of? @_attribute_name "class" "className" "classNames")
     [
         (string
             (string_fragment) @tailwind
