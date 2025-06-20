@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.2](https://github.com/y3owk1n/tailwind-autosort.nvim/compare/v0.6.1...v0.6.2) (2025-06-20)
+
+
+### Bug Fixes
+
+* **class.scm:** add support for `classNames` ([#62](https://github.com/y3owk1n/tailwind-autosort.nvim/issues/62)) ([b552e20](https://github.com/y3owk1n/tailwind-autosort.nvim/commit/b552e20be5ea100c2a14c13d0dabc8649c2a2f48))
+
 ## [0.6.1](https://github.com/y3owk1n/tailwind-autosort.nvim/compare/v0.6.0...v0.6.1) (2025-03-29)
 
 
