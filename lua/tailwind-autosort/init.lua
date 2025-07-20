@@ -1,13 +1,17 @@
 local M = {}
 
----@class TailwindAutoSort.Config
----@field enable_autocmd? boolean
----@field notify_line_changed? boolean
+---@brief [[
+---*tailwind-autosort.nvim.txt*
+---
+---Keep all your notes, todos, and journals inside Neovim without ever leaving the editor.
+---@brief ]]
 
----@class TailwindAutoSort.Cache
----@field prettier_root_dir string|nil|false
----@field has_tw_prettier_plugin boolean|nil
+---@toc tailwind-autosort.nvim.toc
 
+---@mod tailwind-autosort.nvim.api API
+
+---Entry point to setup the plugin
+---@type fun(user_config?: TailwindAutoSort.Config)
 M.setup = require("tailwind-autosort.config").setup
 
 return M
