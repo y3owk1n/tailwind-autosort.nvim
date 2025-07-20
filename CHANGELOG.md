@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.6.3](https://github.com/y3owk1n/tailwind-autosort.nvim/compare/v0.6.2...v0.6.3) (2025-07-20)
+
+
+### Bug Fixes
+
+* **docs:** switch doc gen from `pandocvim` to `vimcats` ([#64](https://github.com/y3owk1n/tailwind-autosort.nvim/issues/64)) ([45fc297](https://github.com/y3owk1n/tailwind-autosort.nvim/commit/45fc2971c81b1f2126dad684915b6afb243f7473))
+* wrong description for `brief` annotaton ([#66](https://github.com/y3owk1n/tailwind-autosort.nvim/issues/66)) ([8b33b95](https://github.com/y3owk1n/tailwind-autosort.nvim/commit/8b33b95b6a9d5a65d618288663ebb5d671c02928))
+
 ## [0.6.2](https://github.com/y3owk1n/tailwind-autosort.nvim/compare/v0.6.1...v0.6.2) (2025-06-20)
 
 
