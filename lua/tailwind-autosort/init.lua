@@ -3,7 +3,7 @@ local M = {}
 ---@brief [[
 ---*tailwind-autosort.nvim.txt*
 ---
----Keep all your notes, todos, and journals inside Neovim without ever leaving the editor.
+---Format tailwind classes without `prettier-plugin-tailwindcss` in `class`, `className`, `cn`, `cva`, `clsx` and `twMerge`
 ---@brief ]]
 
 ---@toc tailwind-autosort.nvim.toc
