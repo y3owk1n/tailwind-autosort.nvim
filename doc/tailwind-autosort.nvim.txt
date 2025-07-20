@@ -42,14 +42,16 @@ M.config                                  *tailwind-autosort.nvim.config.config*
 ==============================================================================
 Types                                             *tailwind-autosort.nvim.types*
 
-TailwindAutoSort.Config   *tailwind-autosort.nvim.types.TailwindAutoSort.Config*
+                          *tailwind-autosort.nvim.types.TailwindAutoSort.Config*
+TailwindAutoSort.Config
 
     Fields: ~
         {enable_autocmd?}       (boolean)
         {notify_line_changed?}  (boolean)
 
 
-TailwindAutoSort.Cache     *tailwind-autosort.nvim.types.TailwindAutoSort.Cache*
+                           *tailwind-autosort.nvim.types.TailwindAutoSort.Cache*
+TailwindAutoSort.Cache
 
     Fields: ~
         {prettier_root_dir}       (string|nil|false)
