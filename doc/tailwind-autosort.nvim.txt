@@ -1,6 +1,6 @@
 *tailwind-autosort.nvim.txt*
 
-Keep all your notes, todos, and journals inside Neovim without ever leaving the editor.
+Format tailwind classes without `prettier-plugin-tailwindcss` in `class`, `className`, `cn`, `cva`, `clsx` and `twMerge`
 
 ==============================================================================
 Table of Contents                                   *tailwind-autosort.nvim.toc*
@@ -42,16 +42,14 @@ M.config                                  *tailwind-autosort.nvim.config.config*
 ==============================================================================
 Types                                             *tailwind-autosort.nvim.types*
 
-                          *tailwind-autosort.nvim.types.TailwindAutoSort.Config*
-TailwindAutoSort.Config
+TailwindAutoSort.Config   *tailwind-autosort.nvim.types.TailwindAutoSort.Config*
 
     Fields: ~
         {enable_autocmd?}       (boolean)
         {notify_line_changed?}  (boolean)
 
 
-                           *tailwind-autosort.nvim.types.TailwindAutoSort.Cache*
-TailwindAutoSort.Cache
+TailwindAutoSort.Cache     *tailwind-autosort.nvim.types.TailwindAutoSort.Cache*
 
     Fields: ~
         {prettier_root_dir}       (string|nil|false)
