@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.4](https://github.com/y3owk1n/tailwind-autosort.nvim/compare/v0.6.3...v0.6.4) (2025-08-10)
+
+
+### Bug Fixes
+
+* **ci:** move docs to its own workflow ([#68](https://github.com/y3owk1n/tailwind-autosort.nvim/issues/68)) ([4170475](https://github.com/y3owk1n/tailwind-autosort.nvim/commit/417047556dcbafbd18cfe08c2e2b47dd445c0d52))
+
 ## [0.6.3](https://github.com/y3owk1n/tailwind-autosort.nvim/compare/v0.6.2...v0.6.3) (2025-07-20)
 
 
