@@ -18,7 +18,10 @@ M.get_class_nodes = function(bufnr, all)
 		return
 	end
 
-	local parser = require("nvim-treesitter.parsers").get_parser(bufnr)
+	local get_parser = vim.treesitter.get_parser
+		or require("nvim-treesitter.parsers").get_parser
+
+	local parser = get_parser(bufnr)
 
 	if not parser then
 		local message = string.format("No parser available for %s", ft)
@@ -26,7 +29,7 @@ M.get_class_nodes = function(bufnr, all)
 		return
 	end
 
-	if all and vim.version().minor == 10 then
+	if all and vim.version().minor >= 10 then
 		parser:parse(true)
 	end
 

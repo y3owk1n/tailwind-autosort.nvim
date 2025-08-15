@@ -51,14 +51,31 @@ function M.check()
 	end
 
 	-- Check for nvim-treesitter
-	local ts_ok, _ = pcall(require, "nvim-treesitter")
-	if ts_ok then
+	local nvim_ts_ok, _ = pcall(require, "nvim-treesitter")
+	if nvim_ts_ok then
 		report_status("ok", "nvim-treesitter is available.")
 	else
 		report_status(
 			"warn",
 			"nvim-treesitter not found. Class sorting based on Treesitter queries may not work correctly."
 		)
+	end
+
+	local nvim_ts_parsers_ok, _ =
+		pcall(require("nvim-treesitter.parsers").get_parser)
+	if nvim_ts_parsers_ok then
+		report_status("ok", "nvim-treesitter.parsers is available.")
+	else
+		-- Check if has access to vim.treesitter.get_parser
+		local ts = vim.treesitter
+		if ts then
+			report_status("ok", "vim.treesitter.get_parser is available.")
+		else
+			report_status(
+				"warn",
+				"nvim-treesitter.parsers or vim.treesitter.get_parser is not available. Please update your Neovim version to v0.10 or higher."
+			)
+		end
 	end
 
 	-- Check for tailwindcss-language-server
