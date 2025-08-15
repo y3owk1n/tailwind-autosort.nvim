@@ -5,7 +5,8 @@ local treesitter_fn = require("tailwind-autosort.treesitter")
 -- Save original functions so we can restore them.
 local original_query_get = vim.treesitter.query.get
 local original_get_node_text = vim.treesitter.get_node_text
-local original_get_parser = require("nvim-treesitter.parsers").get_parser
+local original_get_parser = vim.treesitter.get_parser
+	or require("nvim-treesitter.parsers").get_parser
 local original_version = vim.version
 
 describe("tailwind-autosort.treesitter", function()
@@ -73,7 +74,12 @@ describe("tailwind-autosort.treesitter", function()
 			table.insert(created_bufs, bufnr)
 			vim.bo[bufnr].ft = "css"
 			-- Override get_parser to simulate no parser available.
+			local parser = vim.treesitter.get_parser
+				or require("nvim-treesitter.parsers").get_parser
 			require("nvim-treesitter.parsers").get_parser = function(buf)
+				return nil
+			end
+			vim.treesitter.get_parser = function(buf)
 				return nil
 			end
 
@@ -114,6 +120,9 @@ describe("tailwind-autosort.treesitter", function()
 			require("nvim-treesitter.parsers").get_parser = function(buf)
 				return dummy_parser
 			end
+			vim.treesitter.get_parser = function(buf)
+				return dummy_parser
+			end
 
 			local results = treesitter_fn.get_class_nodes(bufnr, false)
 			assert.is_table(results)
@@ -151,6 +160,9 @@ describe("tailwind-autosort.treesitter", function()
 					end,
 				}
 				require("nvim-treesitter.parsers").get_parser = function(buf)
+					return dummy_parser
+				end
+				vim.treesitter.get_parser = function(buf)
 					return dummy_parser
 				end
 
