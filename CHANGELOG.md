@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.5](https://github.com/y3owk1n/tailwind-autosort.nvim/compare/v0.6.4...v0.6.5) (2025-08-15)
+
+
+### Bug Fixes
+
+* simple support for `vim.treesitter` get parser ([#70](https://github.com/y3owk1n/tailwind-autosort.nvim/issues/70)) ([3b744af](https://github.com/y3owk1n/tailwind-autosort.nvim/commit/3b744afb4ee7d6f0ee7faf2867a731e421358223))
+
 ## [0.6.4](https://github.com/y3owk1n/tailwind-autosort.nvim/compare/v0.6.3...v0.6.4) (2025-08-10)
 
 
