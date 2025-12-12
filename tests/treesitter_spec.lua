@@ -127,6 +127,7 @@ describe("tailwind-autosort.treesitter", function()
 			local results = treesitter_fn.get_class_nodes(bufnr, false)
 			assert.is_table(results)
 			assert.are.equal(3, #results)
+			---@diagnostic disable-next-line: need-check-nil
 			local node = results[1]
 			assert.is_table(node)
 			assert.is_true(node.dummy)

@@ -17,8 +17,8 @@ M.get_tw_lsp_client = function()
 	return tw_client
 end
 
-M.run_sort = function()
-	local config = require("tailwind-autosort.config").config
+M.run_sort = function(config)
+	local config = config or require("tailwind-autosort.config").config
 
 	local done = false
 
