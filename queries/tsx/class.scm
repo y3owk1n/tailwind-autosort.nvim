@@ -24,5 +24,23 @@
               right: (string (string_fragment) @tailwind)
             )
         )
+		(jsx_expression
+			(template_string
+				(template_substitution
+					(ternary_expression
+						consequence: (string (string_fragment) @tailwind)
+					)
+				)
+			)
+		)
+		(jsx_expression
+			(template_string
+				(template_substitution
+					(ternary_expression
+						alternative: (string (string_fragment) @tailwind)
+					)
+				)
+			)
+		)
     ]
 )

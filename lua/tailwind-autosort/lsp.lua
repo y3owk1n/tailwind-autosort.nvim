@@ -68,9 +68,14 @@ M.run_sort = function(config)
 			{}
 		)
 
-		class_text[#class_text + 1] = table.concat(text, "\n")
+		local raw = table.concat(text, "\n")
+		local leading = raw:match("^(%s*)") or ""
+		local trailing = raw:match("(%s*)$") or ""
+		local trimmed = raw:match("^%s*(.-)%s*$")
+
+		class_text[#class_text + 1] = trimmed
 		class_ranges[#class_ranges + 1] =
-			{ start_row, start_col, end_row, end_col }
+			{ start_row, start_col, end_row, end_col, leading, trailing }
 	end
 
 	params.classLists = class_text
@@ -96,7 +101,22 @@ M.run_sort = function(config)
 
 		local total_lines_sorted = 0
 
-		for i, edit in pairs(result.classLists) do
+		-- Sort indices in reverse order so earlier writes don't shift later positions
+		local sorted_indices = {}
+		for i = 1, #class_ranges do
+			sorted_indices[i] = i
+		end
+		table.sort(sorted_indices, function(a, b)
+			local a_range = class_ranges[a]
+			local b_range = class_ranges[b]
+			if a_range[1] ~= b_range[1] then
+				return a_range[1] > b_range[1]
+			end
+			return a_range[3] > b_range[3]
+		end)
+
+		for _, i in ipairs(sorted_indices) do
+			local edit = result.classLists[i]
 			local lines = vim.split(edit, "\n")
 			local original_lines = vim.split(class_text[i], "\n")
 
@@ -124,12 +144,10 @@ M.run_sort = function(config)
 			for k, line in ipairs(lines) do
 				-- Remove extra spaces between class names
 				line = line:gsub("%s+", " ")
-				-- Trim leading and trailing spaces
-				line = line:gsub("^%s*(.-)%s*$", "%1")
 				lines[k] = line
 			end
 
-			local start_row, start_col, end_row, end_col =
+			local start_row, start_col, end_row, end_col, leading, trailing =
 				unpack(class_ranges[i])
 
 			-- Only replace the lines if they are different
@@ -143,6 +161,10 @@ M.run_sort = function(config)
 
 			if lines_changed then
 				total_lines_sorted = total_lines_sorted + 1
+				local final_lines = vim.deepcopy(lines)
+				final_lines[1] = leading .. final_lines[1]
+				final_lines[#final_lines] = final_lines[#final_lines]
+					.. trailing
 				local set_text = function()
 					vim.api.nvim_buf_set_text(
 						bufnr,
@@ -150,10 +172,9 @@ M.run_sort = function(config)
 						start_col,
 						end_row,
 						end_col,
-						lines
+						final_lines
 					)
 				end
-
 				pcall(set_text)
 			end
 		end
