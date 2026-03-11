@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.6](https://github.com/y3owk1n/tailwind-autosort.nvim/compare/v0.6.5...v0.6.6) (2026-03-11)
+
+
+### Bug Fixes
+
+* **lsp:** preserve whitespace and sort edits to prevent position shifts ([be33e9e](https://github.com/y3owk1n/tailwind-autosort.nvim/commit/be33e9e87b7599e736e274073ba232f6de74363c))
+
 ## [0.6.5](https://github.com/y3owk1n/tailwind-autosort.nvim/compare/v0.6.4...v0.6.5) (2025-08-15)
 
 
